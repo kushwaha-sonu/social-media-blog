@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link href="./output.css" rel="stylesheet" />
+  </head>
+  <body class="my-body">
+    <div class="container mx-auto w-full h-full flex items-center">
+      <div
+        class="border-2 border-sky-500 shadow-md rounded-md w-[500px] mx-auto bg-clip-padding backdrop-filter bg-slate-500 bg-opacity-30 backdrop-blur-sm"
+      >
+        <h1 class="text-4xl text-center font-bold text-gray-900 py-3">Login</h1>
+
+        <form action="" class="w-full min-h-fit p-4">
+          <div class="flex flex-col p-2 w-full">
+            <label for="email" class="text-xl font-semibold text-gray-900 block"
+              >Email :</label
+            >
+            <input
+              type="text"
+              class="w-full p-2 border-2 rounded-md border-sky-300 outline-2 outline-slate-500"
+              id="email"
+              placeholder="enter your email"
+              name="email"
+              onchange="handleChange(event)"
+            />
+          </div>
+
+          <div class="flex flex-col p-2 w-full">
+            <label
+              for="password"
+              class="text-xl font-semibold text-gray-900 block"
+              >Password :</label
+            >
+            <input
+              type="password"
+              class="w-full p-2 border-2 rounded-md border-sky-300 outline-2 outline-slate-500"
+              id="password"
+              placeholder="your password"
+              name="password"
+              onchange="handleChange(event)"
+            />
+          </div>
+          <div class="p-2 w-full">
+            <button class="button" onclick="handleLoginSubmit(event)">Login</button>
+          </div>
+        </form>
+        <div class="pb-4">
+          <p class="text-center text-gray-900">
+            Don't have an account? <a href="./register.html">Register</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <script src="./main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.my-body{
+    height: 100vh;
+    background: rgb(132,153,198);
+    background: linear-gradient(149deg, rgba(132,153,198,1) 0%, rgba(37,202,214,1) 45%, rgba(145,142,199,1) 80%);
+}
+
+
+
+.button {
+  @apply bg-rose-700 text-white p-2 text-2xl font-bold rounded-md w-full border-2 border-slate-700 text-center cursor-pointer mt-6 block;
+}
+
+a{
+  @apply font-semibold text-2xl 
+}
+
+a:hover{
+  @apply hover:border-b-red-600 border-b-4 text-gray-600
+}
+
+h1,h2{
+  @apply text-4xl font-bold text-gray-800
+}
