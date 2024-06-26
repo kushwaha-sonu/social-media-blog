@@ -613,6 +613,18 @@ video {
   margin-right: auto;
 }
 
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
+.mt-14 {
+  margin-top: 3.5rem;
+}
+
+.mt-16 {
+  margin-top: 4rem;
+}
+
 .block {
   display: block;
 }
@@ -650,8 +662,20 @@ video {
   width: 60rem;
 }
 
+.w-\[700px\] {
+  width: 700px;
+}
+
 .w-full {
   width: 100%;
+}
+
+.flex-1 {
+  flex: 1 1 0%;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
 .flex-col {
@@ -674,6 +698,10 @@ video {
   gap: 2.5rem;
 }
 
+.gap-6 {
+  gap: 1.5rem;
+}
+
 .overflow-hidden {
   overflow: hidden;
 }
@@ -686,10 +714,6 @@ video {
   border-width: 2px;
 }
 
-.border-b-4 {
-  border-bottom-width: 4px;
-}
-
 .border-sky-300 {
   --tw-border-opacity: 1;
   border-color: rgb(125 211 252 / var(--tw-border-opacity));
@@ -698,6 +722,11 @@ video {
 .border-sky-500 {
   --tw-border-opacity: 1;
   border-color: rgb(14 165 233 / var(--tw-border-opacity));
+}
+
+.bg-red-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(252 165 165 / var(--tw-bg-opacity));
 }
 
 .bg-slate-300 {
@@ -749,6 +778,10 @@ video {
   padding-bottom: 1rem;
 }
 
+.pl-4 {
+  padding-left: 1rem;
+}
+
 .text-center {
   text-align: center;
 }
@@ -772,8 +805,16 @@ video {
   font-weight: 700;
 }
 
+.font-normal {
+  font-weight: 400;
+}
+
 .font-semibold {
   font-weight: 600;
+}
+
+.font-thin {
+  font-weight: 100;
 }
 
 .text-gray-900 {
@@ -832,19 +873,19 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-a {
+li>a {
   font-size: 1.5rem;
   line-height: 2rem;
   font-weight: 600;
 }
 
-a:hover {
+li>a:hover {
   border-bottom-width: 4px;
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity));
 }
 
-a:hover:hover {
+li>a:hover:hover {
   --tw-border-opacity: 1;
   border-bottom-color: rgb(220 38 38 / var(--tw-border-opacity));
 }
@@ -857,26 +898,13 @@ h1,h2 {
   color: rgb(31 41 55 / var(--tw-text-opacity));
 }
 
-.hover\:border-b-red-600:hover {
-  --tw-border-opacity: 1;
-  border-bottom-color: rgb(220 38 38 / var(--tw-border-opacity));
-}
-
-.hover\:border-b-blue-600:hover {
-  --tw-border-opacity: 1;
-  border-bottom-color: rgb(37 99 235 / var(--tw-border-opacity));
-}
-
-.hover\:\!border-b-blue-600:hover {
-  --tw-border-opacity: 1 !important;
-  border-bottom-color: rgb(37 99 235 / var(--tw-border-opacity)) !important;
+.blog {
+  height: 400px;
+  width: 100%;
+  padding: 0.5rem;
 }
 
 .hover\:text-blue-500:hover {
   --tw-text-opacity: 1;
   color: rgb(59 130 246 / var(--tw-text-opacity));
-}
-
-.hover\:underline:hover {
-  text-decoration-line: underline;
 }

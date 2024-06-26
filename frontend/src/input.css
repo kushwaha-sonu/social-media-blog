@@ -15,14 +15,19 @@
   @apply bg-rose-700 text-white p-2 text-2xl font-bold rounded-md w-full border-2 border-slate-700 text-center cursor-pointer mt-6 block;
 }
 
-a{
+li>a{
   @apply font-semibold text-2xl 
 }
 
-a:hover{
+li>a:hover{
   @apply hover:border-b-red-600 border-b-4 text-gray-600
 }
 
 h1,h2{
   @apply text-4xl font-bold text-gray-800
+}
+
+
+.blog{
+  @apply p-2 w-full h-[400px]
 }
