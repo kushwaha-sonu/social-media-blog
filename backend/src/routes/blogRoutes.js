@@ -2,7 +2,9 @@ const express = require("express");
 const blogRoute = express.Router();
 const Blog = require("../models/blogModel");
 
-blogRoute.post("/create-blog", async (req, res) => {
+const {verifyToken}=require("../middlewares/index")
+
+blogRoute.post("/create-blog",verifyToken, async (req, res) => {
   try {
     const blogData = req.body;
     // console.log(blogData);
@@ -40,7 +42,7 @@ blogRoute.post("/create-blog", async (req, res) => {
   }
 });
 
-blogRoute.get("/get-blogs", async (req, res) => {
+blogRoute.get("/get-blogs",async (req, res) => {
   try {
     const blogs = await Blog.find({});
     if (!blogs.length) {

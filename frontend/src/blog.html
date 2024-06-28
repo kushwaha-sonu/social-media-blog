@@ -2,39 +2,56 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog page</title>
-    <link href="./output.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.4/purify.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog page</title>
+  <link href="./output.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.4/purify.min.js"></script>
 
 </head>
 
 <body>
 
-    <div class="w-full mx-auto h-20 fixed left-0 right-0 top-0 shadow-md bg-slate-300 z-50">
-        <nav class="flex container w-full items-center justify-between h-full z-50 p-4">
-            <div class="w-full h-full">
-                <a href="#">
-                    <h1 class="font-bold text-3xl">My Blog</h1>
-                </a>
-            </div>
-            <div class="w-full h-full">
-                <ul class="justify-between flex gap-10 p-2">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="create.html">Create</a></li>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="register.html">Register</a></li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-    <section class="w-full h-screen mt-10 py-20">
-        <div class=" container p-4 w-full h-full flex flex-1 flex-col gap-6 bg-slate-300" id="single_blog_container">
-        </div>
-    </section>
+  <div
+    class="w-full mx-auto flex items-center justify-center h-20 fixed left-0 right-0 top-0 shadow-md bg-slate-300 z-50">
+    <nav class="flex container justify-between w-full items-center h-full z-50 p-4">
+      <div class="w-[20%] h-full flex items-center justify-start">
+        <h1 class="font-bold text-center text-3xl" id="logo_button">My Blog</h1>
+      </div>
+      <div class="h-full">
+        <ul class="flex w-full h-full p-2 gap-20 items-center" id="ul_list">
+          <li>
+            <button class="px-4 py-2 text-2xl w-full rounded-md bg-blue-600 font-semibold"
+              id="home_button">Home</button>
+          </li>
+          <li>
+            <button class="px-4 py-2 text-2xl w-full rounded-md bg-blue-600 font-semibold"
+              id="create_button">Create</button>
+          </li>
+          <li>
+            <button class="px-4 py-2 text-2xl w-full rounded-md bg-blue-600 font-semibold"
+              id="login_button">Login</button>
+          </li>
+          <li>
+            <button class="px-4 py-2 text-2xl w-full rounded-md bg-blue-600 font-semibold"
+              id="register_button">Register</button>
+          </li>
+        </ul>
+      </div>
 
-    <script src="./main.js"></script>
+    </nav>
+  </div>
+  <section class="w-full p-4 h-full mt-10 py-20 flex items-center justify-center">
+    <div class=" container p-4 w-full h-fit flex flex-col gap-6 bg-slate-300" id="single_blog_container">
+    </div>
+  </section>
+
+  <!-- <section>
+        <h1>This is heading</h1>
+        <p>This is paragraph</p>
+    </section> -->
+
+  <script src="./main.js"></script>
 </body>
 
 </html>

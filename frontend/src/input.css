@@ -23,11 +23,37 @@ li>a:hover{
   @apply hover:border-b-red-600 border-b-4 text-gray-600
 }
 
-h1,h2{
+/* h1,h2{
   @apply text-4xl font-bold text-gray-800
-}
+} */
 
 
 .blog{
-  @apply p-2 w-full h-[400px]
+  @apply w-full h-full min-w-[300px] min-h-[400px] md:min-h-[20rem]
 }
+
+.card_content>p{
+  @apply pt-2 text-slate-900
+
+}
+
+.card_content>h1,h2,h3{
+  @apply font-bold text-gray-800
+
+}
+.card_content>h2{
+  @apply font-bold text-gray-800 pt-2
+
+}
+
+
+.card_content>ul>li{
+  @apply list-disc list-inside 
+}
+
+.card_content>blockquote{
+  @apply text-blue-600
+}
+
+
+

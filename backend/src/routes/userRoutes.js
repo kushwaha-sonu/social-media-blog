@@ -42,6 +42,7 @@ userRoute.post("/register", async (req, res) => {
       case user.password !== user.c_password:
         errorMessage = "Password and confirm password should be the same";
         break;
+      
     }
 
     if (errorMessage) {
@@ -134,5 +135,28 @@ userRoute.post(
     }
   }
 );
+
+userRoute.post('/user', async (req, res) => {
+  const email = req.body.email;
+  console.log(email);
+
+  try {
+    if (!email) {
+      return res.status(400).json({ message: "Email is required", success: false });
+    }
+
+    const user = await User.findOne({ email: email });
+    // console.log(user);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found", success: false });
+    }
+
+    res.status(200).json({ user: user, success: true });
+
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong", error: error.message, success: false });
+  }
+});
 
 module.exports = userRoute;

@@ -32,17 +32,16 @@ const generateRefreshToken=(req,res,next)=>{
 
 const verifyToken = (req, res, next) => {
   const authHeader = req.headers.authorization;
-  // console.log(authHeader);
-  if (!authHeader) {
+  const token = authHeader.split(' ')[1]; 
+  // console.log(token);
+  if (token===null || token===undefined) {
     return res.status(401).json({ message: "Unauthorized access" });
   }
 
-  // const token = authHeader.split(' ')[1]; 
-  // console.log(token);
-  jwt.verify(authHeader, process.env.JWT_SECRET, (err, user) => {
+  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
     
     if (err) {
-      return res.status(403).json({ message: "Forbidden access",error: err.message });
+      return res.status(403).json({ message: "Please Login to create blog",error: err.message });
     }
     req.user = user;
     next();
