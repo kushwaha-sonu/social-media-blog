@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile Page</title>
+    <link href="./output.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div
+        class="w-full fixed top-0 left-0 z-10 h-20 p-2 flex items-center justify-center shadow-md bg-slate-300 shadow-gray-400">
+        <h1 class="text-center text-3xl font-bold p-4">User Profile</h1>
+    </div>
+
+    <div class="h-screen w-full flex pt-20">
+
+        <div class="w-1/4 h-full p-4 border-r-2 inset-4 border-gray-300">
+            <div class="flex items-start justify-center hover:bg-slate-400 shadow-lg mt-4 bg-slate-300 cursor-pointer">
+                <h1 class="font-semibold text-2xl p-4">User Name</h1>
+            </div>
+
+            <div class="flex items-start justify-center shadow-lg mt-8 bg-slate-200">
+                <ul class="flex gap-4 flex-col items-center justify-center p-2 w-full">
+                    <li class="mt-2 w-full text-center py-2 bg-gray-400 hover:bg-gray-500 rounded-md cursor-pointer"><button class="font-semibold text-2xl" onclick="handleProfileHome()" >Home</button></li>
+                    <li class="mt-2 w-full text-center py-2 bg-gray-400 hover:bg-gray-500 rounded-md cursor-pointer"><button class="font-semibold text-2xl" onclick="handleProfileCreate()" >Create</button></li>
+                    <li class="mt-2 w-full text-center py-2 bg-gray-400 hover:bg-gray-500 rounded-md cursor-pointer"><button class="font-semibold text-2xl" >All Blogs</button></li>
+                    <li class="mt-2 w-full text-center py-2 bg-gray-400 hover:bg-gray-500 rounded-md cursor-pointer"><button class="font-semibold text-2xl" >Reset Password</button></li>
+                </ul>
+            </div>
+            <div class="bg-slate-200 p-2 mt-16">
+                <button class="w-full p-2 font-semibold text-2xl bg-red-700 hover:bg-red-400 rounded-md" onclick="handleProfileLogOut()">Logout</button>
+            </div>
+        </div>
+
+        <div class="w-3/4 p-4 overflow-auto hide-scrollbar">
+            <div class="bg-blue-400 w-full h-full">
+
+                <h1>Right Div</h1>
+            </div>
+           
+        </div>
+    </div>
+
+
+    <script src="../script/main.js"></script>
+    <script src="../script/userProfile.js"></script>
+
+</body>
+
+</html>

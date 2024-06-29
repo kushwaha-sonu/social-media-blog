@@ -6,7 +6,7 @@ const login_button = document.getElementById("login_button");
 const create_button = document.getElementById("create_button");
 const home_button = document.getElementById("home_button");
 const logout_button = document.getElementById("logout_button");
-const user_button = document.getElementById("user_button");
+// const user_button = document.getElementById("user_button");
 const blog_container= document.getElementById("blog_container");
 var ul_list = document.getElementById("ul_list");
 
@@ -242,8 +242,8 @@ function getUserDetails() {
 
   // Check if the token exists
   if (!token) {
-    console.log("No token found");
-    return null;
+    // console.log("No token found");
+    return;
   }
 
   // Split the token into its parts
@@ -252,7 +252,7 @@ function getUserDetails() {
   // Ensure the token has three parts
   if (tokenParts.length !== 3) {
     console.error("Invalid token format");
-    return null;
+    return;
   }
 
   // Decode the payload (second part of the token)
@@ -266,7 +266,7 @@ function getUserDetails() {
     return user; // Return the user details
   } catch (error) {
     console.error("Invalid token", error);
-    return null;
+    return;
   }
 }
 
@@ -319,10 +319,14 @@ const handleButtonDisplay = (user) => {
   ul_list.appendChild(list_item1);
   ul_list.appendChild(list_item2);
 
+  const user_button=document.getElementById('user_button');
+  user_button.addEventListener('click', handleUserProfile)
+    
   document
     .getElementById("logout_button")
     .addEventListener("click", handleLogOut);
 };
+
 
 const handleLogOut = () => {
   localStorage.removeItem("token");

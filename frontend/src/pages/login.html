@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Register</title>
+  <title>Login Page</title>
   <link href="./output.css" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.4/purify.min.js"></script>
 </head>
@@ -39,19 +39,12 @@
 
     </nav>
   </div>
-  <div class="container mx-auto w-full h-screen flex items-center py-20">
+  <div class="container mx-auto w-full h-full flex items-center">
     <div
-      class="border-2 border-sky-500 shadow-md rounded-md w-[500px] mt-16 mx-auto bg-clip-padding backdrop-filter bg-slate-500 bg-opacity-30 backdrop-blur-sm">
-      <h1 class="text-4xl text-center font-bold text-gray-900 py-3">
-        Register
-      </h1>
+      class="border-2 border-sky-500 shadow-md rounded-md w-[500px] mx-auto bg-clip-padding backdrop-filter bg-slate-500 bg-opacity-30 backdrop-blur-sm">
+      <h1 class="text-4xl text-center font-bold text-gray-900 py-3">Login</h1>
 
       <form action="" class="w-full min-h-fit p-4">
-        <div class="flex flex-col p-2 w-full">
-          <label for="name" class="text-xl font-semibold text-gray-900 block">Name :</label>
-          <input type="text" class="w-full p-2 border-2 rounded-md border-sky-300 outline-2 outline-slate-500" id="name"
-            placeholder="your name" name="name" onchange="handleChange(event)" />
-        </div>
         <div class="flex flex-col p-2 w-full">
           <label for="email" class="text-xl font-semibold text-gray-900 block">Email :</label>
           <input type="text" class="w-full p-2 border-2 rounded-md border-sky-300 outline-2 outline-slate-500"
@@ -63,24 +56,19 @@
           <input type="password" class="w-full p-2 border-2 rounded-md border-sky-300 outline-2 outline-slate-500"
             id="password" placeholder="your password" name="password" onchange="handleChange(event)" />
         </div>
-
-        <div class="flex flex-col p-2 w-full">
-          <label for="c_password" class="text-xl font-semibold text-gray-900 block">Confirm Password :</label>
-          <input type="password" class="w-full p-2 border-2 rounded-md border-sky-300 outline-2 outline-slate-500"
-            id="c_password" placeholder="your confirm password" name="c_password" onchange="handleChange(event)" />
-        </div>
         <div class="p-2 w-full">
-          <button class="button" onclick="handleRegisterSubmit(event)">Register</button>
+          <button class="button" onclick="handleLoginSubmit(event)">Login</button>
         </div>
       </form>
       <div class="pb-4">
         <p class="text-center text-gray-900">
-          Already have an account? <a href="./login.html">Login</a>
+          Don't have an account? <a href="./register.html">Register</a>
         </p>
       </div>
     </div>
   </div>
-  <script src="./main.js"></script>
+  <script src="../script/main.js"></script>
+  <script src="../script/userProfile.js"></script>
 </body>
 
 </html>

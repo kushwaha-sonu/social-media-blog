@@ -138,7 +138,7 @@ userRoute.post(
 
 userRoute.post('/user', async (req, res) => {
   const email = req.body.email;
-  console.log(email);
+  // console.log(email);
 
   try {
     if (!email) {

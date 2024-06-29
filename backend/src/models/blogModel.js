@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const blogSchema = mongoose.Schema({
+const blogSchema = new mongoose.Schema({
    
     title: {
         type: String,
@@ -9,12 +9,11 @@ const blogSchema = mongoose.Schema({
         type: String,
         required: true,
     },  
-
-    // author:{
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'User',
-    //     required: true
-    // }
+    author: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User', // Ensure the reference is correct
+        required: true,
+      }
 
 }, { timestamps: true });
 
