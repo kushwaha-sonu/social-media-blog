@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile Page</title>
     <link href="./output.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.4/purify.min.js"></script>
 </head>
 
 <body>
@@ -17,36 +18,59 @@
 
     <div class="h-screen w-full flex pt-20">
 
-        <div class="w-1/4 h-full p-4 border-r-2 inset-4 border-gray-300">
+        <div class="w-1/4 h-screen p-4 border-r-2 inset-4 border-gray-300">
             <div class="flex items-start justify-center hover:bg-slate-400 shadow-lg mt-4 bg-slate-300 cursor-pointer">
-                <h1 class="font-semibold text-2xl p-4">User Name</h1>
+                <h1 class="font-semibold text-2xl p-4" id="user_name">User Name</h1>
             </div>
 
             <div class="flex items-start justify-center shadow-lg mt-8 bg-slate-200">
                 <ul class="flex gap-4 flex-col items-center justify-center p-2 w-full">
-                    <li class="mt-2 w-full text-center py-2 bg-gray-400 hover:bg-gray-500 rounded-md cursor-pointer"><button class="font-semibold text-2xl" onclick="handleProfileHome()" >Home</button></li>
-                    <li class="mt-2 w-full text-center py-2 bg-gray-400 hover:bg-gray-500 rounded-md cursor-pointer"><button class="font-semibold text-2xl" onclick="handleProfileCreate()" >Create</button></li>
-                    <li class="mt-2 w-full text-center py-2 bg-gray-400 hover:bg-gray-500 rounded-md cursor-pointer"><button class="font-semibold text-2xl" >All Blogs</button></li>
-                    <li class="mt-2 w-full text-center py-2 bg-gray-400 hover:bg-gray-500 rounded-md cursor-pointer"><button class="font-semibold text-2xl" >Reset Password</button></li>
+                    <li class="mt-2 w-full text-center py-2 bg-gray-400 hover:bg-gray-500 rounded-md cursor-pointer">
+                        <button class="font-semibold text-2xl w-full h-full"
+                            onclick="handleUserHomeButton()">Home</button>
+                    </li>
+                    <li class="mt-2 w-full text-center py-2 bg-gray-400 hover:bg-gray-500 rounded-md cursor-pointer">
+                        <button class="font-semibold text-2xl w-full h-full"
+                            onclick="handleUserCreateDisplay()">Create</button>
+                    </li>
+                    <li class="mt-2 w-full text-center py-2 bg-gray-400 hover:bg-gray-500 rounded-md cursor-pointer">
+                        <button class="font-semibold text-2xl w-full h-full" onclick="handleAllBlogsDisplay()">All
+                            Blogs</button>
+                    </li>
+                    <li class="mt-2 w-full text-center py-2 bg-gray-400 hover:bg-gray-500 rounded-md cursor-pointer">
+                        <button class="font-semibold text-2xl w-full h-full" onclick="handleUpdateDisplay()">Update Profile</button>
+                    </li>
                 </ul>
             </div>
             <div class="bg-slate-200 p-2 mt-16">
-                <button class="w-full p-2 font-semibold text-2xl bg-red-700 hover:bg-red-400 rounded-md" onclick="handleProfileLogOut()">Logout</button>
+                <button class="w-full p-2 font-semibold text-2xl bg-red-700 hover:bg-red-400 rounded-md"
+                    onclick="handleProfileLogOut()">Logout</button>
             </div>
         </div>
 
-        <div class="w-3/4 p-4 overflow-auto hide-scrollbar">
-            <div class="bg-blue-400 w-full h-full">
+        <div class="w-3/4 p-4 h-screen overflow-auto hide-scrollbar" id="right_parent_div">
+            <div class="w-full h-fit flex flex-col items-center justify-center" id="right_div">
+                <div id="home_div" class="w-full h-fit grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-10 md:gap-8">
 
-                <h1>Right Div</h1>
+                </div>
+                <div id="createBlogDiv" class="w-full h-fit">
+
+                </div>
+                <div id="allBlogsDiv" class="w-full h-fit">
+
+                </div>
+                <div id="updateDiv" class="w-full h-fit">
+
+                </div>
             </div>
-           
+
         </div>
     </div>
 
 
-    <script src="../script/main.js"></script>
-    <script src="../script/userProfile.js"></script>
+    <!-- <script type="module" src="../script/userProfile.js"></script> -->
+    <script src="../script/index.js"></script>
+    <script src="https://kit.fontawesome.com/b5202a0756.js" crossorigin="anonymous"></script>
 
 </body>
 

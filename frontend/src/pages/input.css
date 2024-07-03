@@ -25,6 +25,11 @@
   @apply bg-rose-700 text-white p-2 text-2xl font-bold rounded-md w-full border-2 border-slate-700 text-center cursor-pointer mt-6 block;
 }
 
+.create_div{
+  @apply w-full h-full p-4 
+
+}
+
 /* li>a{
   @apply font-semibold text-2xl 
 } */

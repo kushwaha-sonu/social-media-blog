@@ -44,7 +44,7 @@
       class="border-2 border-sky-500 shadow-md rounded-md w-[500px] mx-auto bg-clip-padding backdrop-filter bg-slate-500 bg-opacity-30 backdrop-blur-sm">
       <h1 class="text-4xl text-center font-bold text-gray-900 py-3">Login</h1>
 
-      <form action="" class="w-full min-h-fit p-4">
+      <form class="w-full min-h-fit p-4" onsubmit="handleLoginSubmit(event)">
         <div class="flex flex-col p-2 w-full">
           <label for="email" class="text-xl font-semibold text-gray-900 block">Email :</label>
           <input type="text" class="w-full p-2 border-2 rounded-md border-sky-300 outline-2 outline-slate-500"
@@ -57,7 +57,7 @@
             id="password" placeholder="your password" name="password" onchange="handleChange(event)" />
         </div>
         <div class="p-2 w-full">
-          <button class="button" onclick="handleLoginSubmit(event)">Login</button>
+          <button class="button" type="submit">Login</button>
         </div>
       </form>
       <div class="pb-4">
@@ -67,8 +67,9 @@
       </div>
     </div>
   </div>
-  <script src="../script/main.js"></script>
-  <script src="../script/userProfile.js"></script>
+  <script src="../script/index.js"></script>
+  <script src="https://kit.fontawesome.com/b5202a0756.js" crossorigin="anonymous"></script>
+  <!-- <script src="../script/userProfile.js"></script> -->
 </body>
 
 </html>
