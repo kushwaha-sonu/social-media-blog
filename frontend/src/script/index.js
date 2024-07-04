@@ -6,6 +6,7 @@ const createUserBlogDiv = document.getElementById("createBlogDiv");
 const allBlogsDiv = document.getElementById("allBlogsDiv");
 const home_div = document.getElementById("home_div");
 const updateDiv = document.getElementById("updateDiv");
+const update_blog = document.getElementById("update_blog");
 
 const register_button = document.getElementById("register_button");
 const login_button = document.getElementById("login_button");
@@ -88,8 +89,8 @@ const handleLoginSubmit = (e) => {
       alert(data.message);
       const token = data.token;
       localStorage.setItem("token", token);
-      console.log(data);
-      console.log(token);
+      // console.log(data);
+      // console.log(token);
       window.location.href = "./index.html";
     })
     .catch((error) => {
@@ -431,20 +432,29 @@ const handleProfileCreate = () => {
   createRightDiv();
 };
 
-const userProfileName = getUserDetails();
+const userProfileName = () => {
+  const userDetailsPromise = getUserDetails();
 
-userProfileName
-  .then((user) => {
-    if (!user || !user.user || !user.user.full_name) return;
+  if (!userDetailsPromise || typeof userDetailsPromise.then !== "function") {
+    console.error("getUserDetails did not return a Promise.");
+    return;
+  }
 
-    const userNameElement = document.getElementById("user_name");
-    if (userNameElement) {
-      userNameElement.innerText = user.user.full_name;
-    }
-  })
-  .catch((error) => {
-    console.error("Error fetching user profile name:", error);
-  });
+  getUserDetails()
+    .then((user) => {
+      if (!user || !user.user || !user.user.full_name) return;
+
+      const userNameElement = document.getElementById("user_name");
+      if (userNameElement) {
+        userNameElement.innerText = user.user.full_name;
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching user profile name:", error);
+    });
+};
+
+userProfileName();
 
 const handleUserHomeButton = () => {
   getUserDetails().then((user) => {
@@ -483,10 +493,10 @@ const handleUserHomeButton = () => {
                   <div class="card-footer px-4 pt-4 flex justify-between items-center">
 
                     <div class="w-14 h-full rounded-full flex items-center justify-center cursor-pointer text-black hover:bg-slate-800 hover:text-white bg-white">
-                        <button class="w-full h-full"><i class="fa-solid fa-pen-to-square text-2xl p-4"></i></button>
+                        <button type="button" class="w-full h-full" onclick="handleEditBlog('${id}')"><i class="fa-solid fa-pen-to-square text-2xl p-4"></i></button>
                     </div>
                     <div class="w-14 h-full rounded-full flex items-center justify-center cursor-pointer bg-red-700 text-white hover:bg-red-400 hover:text-black">
-                       <button class="w-full h-full" onclick="handleDeleteBlog('${id}')"><i class="fa-solid fa-trash text-2xl p-4"></i></button>
+                       <button type="button" class="w-full h-full" onclick="handleDeleteBlog('${id}')"><i class="fa-solid fa-trash text-2xl p-4"></i></button>
                     </div> 
                   </div>
               </div>
@@ -512,6 +522,84 @@ const handleDeleteBlog = (id) => {
     console.log(data);
     handleUserHomeButton();
   });
+};
+
+let currentBlogId = null;
+
+const handleEditBlog = (id) => {
+  currentBlogId = id;
+  console.log(currentBlogId);
+
+  const div = document.createElement("div");
+  div.classList.add("update_div");
+
+  div.innerHTML = `
+  <div
+    class="shadow-md rounded-md md:w-[600px] w-[300px] mx-auto bg-clip-padding backdrop-filter bg-slate-300 bg-opacity-30 backdrop-blur-sm">
+
+    <div class="relative">
+      <h1 class="text-4xl text-center font-bold text-gray-900 py-3">
+        Update Blog
+      </h1>
+
+      <div class="absolute w-10 h-10 flex items-center justify-center rounded-full top-2 inset-x-[34rem]">
+        <button type="button" class="w-full h-full bg-blue-500 rounded-full hover:bg-red-500 hover:text-white" onclick="closePopUp()"><i class="fa-solid fa-xmark font-semibold"></i></button>
+      </div>
+    
+    </div>
+
+    <form action="" id="updateBlogForm" class="w-full min-h-fit p-4">
+      <div class="flex flex-col p-2 w-full">
+        <label for="tittle" class="text-xl font-semibold text-gray-900 block">Tittle :</label>
+        <input type="text" class="w-full p-2 border-2 rounded-md border-sky-300 outline-2 outline-slate-500"
+        id="title" placeholder="enter tittle" name="title" onchange="handleChange(event)" />
+      </div>
+
+      <div class="flex flex-col p-2 w-full">
+        <label for="description" class="text-xl font-semibold text-gray-900 block">Description :</label>
+        <textarea class="w-full p-2 border-2 rounded-md border-sky-300 outline-2 outline-slate-500" id="description"
+        rows="10" cols="10" placeholder="enter description" name="description"
+        onchange="handleChange(event)"></textarea>
+      </div>
+      <div class="p-2 w-full">
+        <button class="button" type="button" onclick="handleCreateBlog(event)">
+          Update
+        </button>
+      </div>
+    </form>
+ 
+  </div>`;
+
+  setBlogDataToUpdateForm(currentBlogId);
+  home_div.classList.add("opacity-40");
+  update_blog.style.display = "flex";
+  update_blog.appendChild(div);
+};
+
+const closePopUp = () => {
+  update_blog.style.display = "none";
+  home_div.classList.remove("opacity-40");
+
+  console.log(userData);
+  currentBlogId = null;
+};
+
+const setBlogDataToUpdateForm = async (id) => {
+  try {
+    const blog = await getBlogById(id);
+
+    console.log(blog);
+    if (blog) {
+      document.getElementById("title").value = blog.title;
+      document.getElementById("description").value = blog.content;
+
+      // Initialize userData with the current blog data
+    } else {
+      alert("Failed to fetch blog: " + blog.message);
+    }
+  } catch (error) {
+    alert("Error fetching blog: " + error.message);
+  }
 };
 
 const handleUserCreateDisplay = () => {
@@ -544,11 +632,7 @@ const handleUserCreateDisplay = () => {
             </button>
           </div>
         </form>
-        <!-- <div class="pb-4">
-            <p class="text-center text-gray-900">
-              Don't have an account? <a href="./register.html">Register</a>
-            </p>
-          </div> -->
+    
       </div>`;
   createUserBlogDiv.appendChild(div);
   allBlogsDiv.style.display = "none";
@@ -606,6 +690,7 @@ const handleAllBlogsDisplay = () => {
 };
 
 const handleUpdateDisplay = () => {
+  updateDiv.innerHTML = "";
   const div = document.createElement("div");
 
   div.classList.add("create_div");
@@ -652,5 +737,5 @@ const handleUpdateDisplay = () => {
 const handleUpdateProfile = (e) => {
   e.preventDefault();
   updateUserProfile(userData);
-  // alert("Profile Updated");
+  window.location.href = "./userprofile.html";
 };

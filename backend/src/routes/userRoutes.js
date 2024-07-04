@@ -167,7 +167,7 @@ userRoute.post("/user", async (req, res) => {
 
 userRoute.put("/user",verifyToken, async (req, res) => {
   const user = req.body;
-  console.log(user);
+  // console.log(user);
 
   let errorMessage = "";
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -198,8 +198,8 @@ userRoute.put("/user",verifyToken, async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashed_password = await bcrypt.hash(user.password, salt);
 
-    const user = await User.findOneAndUpdate(
-      { email: email },
+    const userDb = await User.findOneAndUpdate(
+      { email: user.email },
       { $set: {
         full_name: user.name,
         email: user.email,
@@ -208,9 +208,9 @@ userRoute.put("/user",verifyToken, async (req, res) => {
       } },
       { new: true, runValidators: true }
     );
-    console.log(user);
+    // console.log("userDb->",userDb);
 
-    if (!user) {
+    if (!userDb) {
       return res
         .status(404)
         .json({ message: "User not found", success: false });

@@ -71,4 +71,8 @@
 }
 
 
+.update_div{
+  @apply absolute container opacity-100 z-30 flex items-center justify-center w-fit h-fit bg-white rounded-md shadow-lg
+}
+
 
