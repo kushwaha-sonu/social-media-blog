@@ -10,6 +10,9 @@
 </head>
 
 <body class="my-body">
+
+
+
   <div
     class="w-full mx-auto flex items-center justify-center h-20 fixed left-0 right-0 top-0 shadow-md bg-slate-300 z-50">
     <nav class="flex container justify-between w-full items-center h-full z-50 p-4">
@@ -19,12 +22,12 @@
       <div class="h-full">
         <ul class="flex w-full h-full p-2 gap-20 items-center" id="ul_list">
           <li>
-            <button class="px-4 py-2 text-2xl w-full rounded-md bg-blue-600 font-semibold"
+            <button class="px-4 py-2 text-2xl w-full rounded-md bg-blue-600 active:text-white font-semibold"
               id="home_button">Home</button>
           </li>
           <li>
-            <button class="px-4 py-2 text-2xl w-full rounded-md bg-blue-600 font-semibold"
-              id="create_button">Create</button>
+            <button class="px-4 py-2 text-2xl w-full rounded-md bg-blue-600 font-semibold" id="about_button"><a
+                href="#footer">About</a></button>
           </li>
           <li>
             <button class="px-4 py-2 text-2xl w-full rounded-md bg-blue-600 font-semibold"
@@ -36,40 +39,106 @@
           </li>
         </ul>
       </div>
-
     </nav>
   </div>
-  <div class="container mx-auto w-full h-full flex items-center">
-    <div
-      class="border-2 border-sky-500 shadow-md rounded-md w-[500px] mx-auto bg-clip-padding backdrop-filter bg-slate-500 bg-opacity-30 backdrop-blur-sm">
-      <h1 class="text-4xl text-center font-bold text-gray-900 py-3">Login</h1>
+  <div class="h-screen w-full relative flex items-center justify-center">
+    <div class="container -rotate-6 absolute mx-auto rounded-md bg-clip-padding backdrop-blur-sm backdrop-filter bg-opacity-40 bg-red-400 w-[550px] max-h-fit py-10 flex items-center">
+      <div 
+        class="border-2 rotate-6 border-gray-700 z-30 shadow-md rounded-md w-[500px] mx-auto bg-clip-padding backdrop-filter bg-transparent bg-opacity-60 backdrop-blur-sm">
+        <h1 class="text-4xl text-center font-bold text-gray-900 py-3">Login</h1>
 
-      <form class="w-full min-h-fit p-4" onsubmit="handleLoginSubmit(event)">
-        <div class="flex flex-col p-2 w-full">
-          <label for="email" class="text-xl font-semibold text-gray-900 block">Email :</label>
-          <input type="text" class="w-full p-2 border-2 rounded-md border-sky-300 outline-2 outline-slate-500"
-            id="email" placeholder="enter your email" name="email" onchange="handleChange(event)" />
-        </div>
+        <form class="w-full min-h-fit p-4" onsubmit="handleLoginSubmit(event)">
+          <div class="flex flex-col p-2 w-full">
+            <label for="email" class="text-xl font-semibold text-gray-900 block">Email :</label>
+            <input type="text" class="w-full p-2 border-2 rounded-md border-black"
+              id="email" placeholder="enter your email" name="email" onchange="handleChange(event)" />
+          </div>
 
-        <div class="flex flex-col p-2 w-full">
-          <label for="password" class="text-xl font-semibold text-gray-900 block">Password :</label>
-          <input type="password" class="w-full p-2 border-2 rounded-md border-sky-300 outline-2 outline-slate-500"
-            id="password" placeholder="your password" name="password" onchange="handleChange(event)" />
+          <div class="flex flex-col p-2 w-full">
+            <label for="password" class="text-xl font-semibold text-gray-900 block">Password :</label>
+            <input type="password" class="w-full p-2 border-2 rounded-md border-black"
+              id="password" placeholder="your password" name="password" onchange="handleChange(event)" />
+          </div>
+          <div class="p-2 w-full">
+            <button class="button" type="submit">Login</button>
+          </div>
+        </form>
+        <div class="pb-4">
+          <p class="text-center text-gray-900">
+            Don't have an account? <a class="underline underline-offset-2" href="./register.html">Register</a>
+          </p>
         </div>
-        <div class="p-2 w-full">
-          <button class="button" type="submit">Login</button>
-        </div>
-      </form>
-      <div class="pb-4">
-        <p class="text-center text-gray-900">
-          Don't have an account? <a href="./register.html">Register</a>
-        </p>
       </div>
     </div>
   </div>
+
+  <footer class="bg-slate-300 w-full p-4" id="footer">
+
+    <div class="container mx-auto">
+      <div class="container flex flex-wrap items-center justify-between p-4 h-full">
+
+        <div class="h-full p-4 w-fit">
+
+          <div class="flex items-center flex-col flex-wrap p-2">
+            <h1 class="text-2xl font-bold">My Blog</h1>
+            <p class="text-center">This is a blog website that allows users to create, read, update and delete blog
+              posts.
+            </p>
+          </div>
+          <div class="font-semibold p-2 flex items-center justify-center flex-col">
+            <p>Phone:+91&nbsp;8856457654</p>
+            <p>Email:&nbsp;myblogcontact@gmail.com</p>
+          </div>
+
+          <div class="p-4 w-full h-full">
+            <ul class="flex items-center justify-center gap-4">
+              <li class="bg-sky-500 hover:bg-white rounded-md">
+                <a href="#" class="text-2xl text-white hover:text-sky-500 p-2"><i class="fab fa-facebook"></i></a>
+              </li>
+              <li class="bg-sky-500 hover:bg-white rounded-md">
+                <a href="#" class="text-2xl text-white hover:text-sky-500 p-2"><i class="fab fa-twitter"></i></a>
+              </li>
+              <li class="bg-sky-500 hover:bg-white rounded-md">
+                <a href="#" class="text-2xl text-white hover:text-sky-500 p-2"><i class="fab fa-instagram"></i></a>
+              </li>
+              <li class="bg-sky-500 hover:bg-white rounded-md">
+                <a href="#" class="text-2xl text-white hover:text-sky-500 p-2"><i class="fab fa-linkedin"></i></a>
+              </li>
+            </ul>
+          </div>
+
+
+        </div>
+
+        <div class="h-full w-fit">
+          <div class="w-full container mx-auto h-full">
+
+            <div class="flex items-center flex-col justify-center w-full pb-4">
+              <h1 class="text-2xl font-bold p-2">Subscribe Our Newsletter</h1>
+
+              <form action="" class="flex items-center gap-4 justify-center">
+                <input type="email" placeholder="Enter your email" class="p-2 rounded-md" />
+                <button class="p-2 bg-blue-600 text-white rounded-md "
+                  onclick="event.preventDefault();alert('Thankyou For Subscribing')">Subscribe</button>
+              </form>
+
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="container w-full h-full flex items-center justify-center border-t-2 border-slate-400 pt-4">
+        <p class="text-center font-semibold">My Blog &copy; 2024</p>
+      </div>
+
+    </div>
+  </footer>
+
   <script src="../script/index.js"></script>
   <script src="https://kit.fontawesome.com/b5202a0756.js" crossorigin="anonymous"></script>
-  <!-- <script src="../script/userProfile.js"></script> -->
+
 </body>
 
 </html>

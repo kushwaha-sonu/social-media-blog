@@ -129,7 +129,7 @@ blogRoute.delete("/delete/:id", async (req, res) => {
       .json({ message: "Something went wrong", error: error.message });
   }
 });
-blogRoute.put("/update/:id", async (req, res) => {
+blogRoute.put("/update/:id",verifyToken, async (req, res) => {
   try {
     const id = req.params.id;
     // console.log(id);

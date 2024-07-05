@@ -10,7 +10,7 @@ const update_blog = document.getElementById("update_blog");
 
 const register_button = document.getElementById("register_button");
 const login_button = document.getElementById("login_button");
-const create_button = document.getElementById("create_button");
+const about_button = document.getElementById("about_button");
 const home_button = document.getElementById("home_button");
 const logout_button = document.getElementById("logout_button");
 const logo_button = document.getElementById("logo_button");
@@ -31,9 +31,6 @@ function handleButtonClick(event) {
     case "login_button":
       window.location.href = "./login.html";
       break;
-    case "create_button":
-      window.location.href = "./create.html";
-      break;
     case "home_button":
       window.location.href = "./index.html";
       break;
@@ -48,7 +45,6 @@ function handleButtonClick(event) {
 if (register_button)
   register_button.addEventListener("click", handleButtonClick);
 if (login_button) login_button.addEventListener("click", handleButtonClick);
-if (create_button) create_button.addEventListener("click", handleButtonClick);
 if (home_button) home_button.addEventListener("click", handleButtonClick);
 if (logo_button) logo_button.addEventListener("click", handleButtonClick);
 
@@ -148,7 +144,7 @@ const displayAllBlogs = () => {
       const trimContent = sanitizedContent.substring(0, 200);
       blogDiv.classList.add("blog");
       blogDiv.innerHTML = `
-         <div class="card w-full h-full  py-4 min-w-fit min-h-fit bg-slate-300">
+         <div class="card w-full h-full py-4 min-w-fit min-h-fit bg-slate-300">
               <div class="card-body">
                 <div class="card-header font-bold text-3xl text-center p-4">${sanitizedTitle}</div>
                 <div class="card-content p-4">
@@ -192,6 +188,8 @@ const getBlogById = (id) => {
       throw err; // Propagate the error further if needed
     });
 };
+
+
 const getUserBlogById = (id) => {
   return fetch(`${baseUrl}/get-user-blogs/${id}`, {
     method: "GET",
@@ -234,6 +232,32 @@ const deleteBlogById = (id) => {
       console.error("Error deleting blog:", err);
       throw err; // Propagate the error further if needed
     });
+};
+
+const handleUpdate = async (e,id) => {
+ 
+  e.preventDefault();
+  const token = localStorage.getItem("token");
+  const response = fetch(`${baseUrl}/update/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(userData),
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      alert(data.message);
+      console.log(data);
+      closePopUp();
+    })
+    .catch((error) => {
+      console.log("Error:", error);
+    });
+    
 };
 
 const displaySingleBlog = () => {
@@ -493,7 +517,7 @@ const handleUserHomeButton = () => {
                   <div class="card-footer px-4 pt-4 flex justify-between items-center">
 
                     <div class="w-14 h-full rounded-full flex items-center justify-center cursor-pointer text-black hover:bg-slate-800 hover:text-white bg-white">
-                        <button type="button" class="w-full h-full" onclick="handleEditBlog('${id}')"><i class="fa-solid fa-pen-to-square text-2xl p-4"></i></button>
+                        <button type="button" class="w-full h-full" onclick="handleEditBlog(event,'${id}')"><i class="fa-solid fa-pen-to-square text-2xl p-4"></i></button>
                     </div>
                     <div class="w-14 h-full rounded-full flex items-center justify-center cursor-pointer bg-red-700 text-white hover:bg-red-400 hover:text-black">
                        <button type="button" class="w-full h-full" onclick="handleDeleteBlog('${id}')"><i class="fa-solid fa-trash text-2xl p-4"></i></button>
@@ -526,9 +550,15 @@ const handleDeleteBlog = (id) => {
 
 let currentBlogId = null;
 
-const handleEditBlog = (id) => {
+const handleEditBlog = async (e, id) => {
+  e.preventDefault();
+
   currentBlogId = id;
-  console.log(currentBlogId);
+  // console.log(currentBlogId);
+  const blog = await getBlogById(id);
+
+  console.log(blog);
+  if (!blog) return;
 
   const div = document.createElement("div");
   div.classList.add("update_div");
@@ -548,21 +578,25 @@ const handleEditBlog = (id) => {
     
     </div>
 
-    <form action="" id="updateBlogForm" class="w-full min-h-fit p-4">
+    <form class="w-full min-h-fit p-4">
       <div class="flex flex-col p-2 w-full">
-        <label for="tittle" class="text-xl font-semibold text-gray-900 block">Tittle :</label>
+        <label for="title" class="text-xl font-semibold text-gray-900 block">Tittle :</label>
         <input type="text" class="w-full p-2 border-2 rounded-md border-sky-300 outline-2 outline-slate-500"
-        id="title" placeholder="enter tittle" name="title" onchange="handleChange(event)" />
+        id="title" placeholder="enter tittle" name="title"
+        value="${blog.title}"
+        onchange="handleChange(event)" />
       </div>
 
       <div class="flex flex-col p-2 w-full">
         <label for="description" class="text-xl font-semibold text-gray-900 block">Description :</label>
         <textarea class="w-full p-2 border-2 rounded-md border-sky-300 outline-2 outline-slate-500" id="description"
         rows="10" cols="10" placeholder="enter description" name="description"
-        onchange="handleChange(event)"></textarea>
+        onchange="handleChange(event)">
+        ${blog.content}
+        </textarea>
       </div>
       <div class="p-2 w-full">
-        <button class="button" type="button" onclick="handleCreateBlog(event)">
+        <button class="button" type="button" onclick="handleUpdate(event,'${currentBlogId}')">
           Update
         </button>
       </div>
@@ -570,7 +604,8 @@ const handleEditBlog = (id) => {
  
   </div>`;
 
-  setBlogDataToUpdateForm(currentBlogId);
+
+
   home_div.classList.add("opacity-40");
   update_blog.style.display = "flex";
   update_blog.appendChild(div);
@@ -580,27 +615,12 @@ const closePopUp = () => {
   update_blog.style.display = "none";
   home_div.classList.remove("opacity-40");
 
-  console.log(userData);
+  userData = {};
+  // console.log(userData);
   currentBlogId = null;
 };
 
-const setBlogDataToUpdateForm = async (id) => {
-  try {
-    const blog = await getBlogById(id);
 
-    console.log(blog);
-    if (blog) {
-      document.getElementById("title").value = blog.title;
-      document.getElementById("description").value = blog.content;
-
-      // Initialize userData with the current blog data
-    } else {
-      alert("Failed to fetch blog: " + blog.message);
-    }
-  } catch (error) {
-    alert("Error fetching blog: " + error.message);
-  }
-};
 
 const handleUserCreateDisplay = () => {
   const div = document.createElement("div");
@@ -689,7 +709,8 @@ const handleAllBlogsDisplay = () => {
   });
 };
 
-const handleUpdateDisplay = () => {
+const handleUpdateDisplay = (e) => {
+  e.preventDefault();
   updateDiv.innerHTML = "";
   const div = document.createElement("div");
 
@@ -721,7 +742,7 @@ const handleUpdateDisplay = () => {
             id="password" placeholder="enter your password" name="password" onchange="handleChange(event)" />
           </div>
           <div class="p-2 w-full">
-            <button class="button" id="submitButton" onclick="handleUpdateProfile(event)">
+            <button class="button" type="button" id="submitButton" onclick="handleUpdateProfile(event)">
               Update
             </button>
           </div>
